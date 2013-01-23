@@ -1,0 +1,267 @@
+/*
+Theme Name: Day of the Duck
+Theme URI: http://www.dayoftheduck.com
+Description: A theme for the Day of the Duck
+Author: Caleb Brewer
+Author URI: http://www.dayoftheduck.com
+Version: 1.0.0
+Tags: html5, white, one-column, fixed-width, custom-logo, custom-colors, threaded-comments, sticky-post, translation-ready, microformats, rtl-language-support, editor-style
+License: GNU General Public License
+License URI: license.txt
+.
+
+Versions
+0.0.1		11/9/2012
+		Initial version of the template
+
+.
+
+*/
+body {
+	margin: 0;
+	
+}
+blockquote {
+	font-style: italic;
+}
+#wrapper {
+	
+}
+#main {
+}
+/* skyline */
+#skyline {
+	position: absolute;
+	height: 100px;
+	width: 400px;
+	top: -100px;
+	margin-left: 40%;
+}
+.skylittle {
+	height: 80px;
+	width: 20px;
+	position: relative;
+	margin-left: 0px;
+	top: 20px;
+	float: left;
+	background-color: black;
+}
+.skyscraper {
+	height: 90px;
+	width: 25px;
+	position: relative;
+	margin-left: 6px;
+	top: 10px;
+	float: left;
+	background-color: black;
+}
+.warehouse {
+	height: 35px;
+	width: 60px;
+	position: relative;
+	margin-left: 4px;
+	top: 65px;
+	float: left;
+	background-color: black;
+}
+.building {
+	height: 40px;
+	width: 35px;
+	position: relative;
+	margin-left: 0;
+	top: 60px;
+	float: left;
+	background-color: black;
+}
+.light-off  {
+	background-color: black;
+	box-shadow: 0 0 0 0 black;
+}
+.light-on  {
+	background-color: #CCC28F;
+	box-shadow: 0 0 4px 0 #CCC28F;
+}
+.city-light,
+.light_1 {
+	height: 4px;
+	width: 2px;
+	position: absolute;	
+	top: 35px;
+	left: 5px;
+}
+.light_2 {
+	top: 60px;
+	left: 14px;	
+}
+.light_3 {
+	top: 80px;
+	left: 45px;	
+}
+.light_4 {
+	top: 72px;
+	left: 65px;	
+}
+.light_5 {
+	top: 50px;
+	left: 98px;	
+}
+.light_6 {
+	top: 70px;
+	left: 120px;	
+}
+.light_7 {
+	top: 26px;
+	left: 106px;	
+}
+.light_8 {
+	top: 40px;
+	left: 165px;	
+}
+.light_9 {
+	top: 70px;
+	left: 180px;	
+}
+.light_10 {
+	top: 60px;
+	left: 185px;	
+}
+.light_11 {
+	top: 75px;
+	left: 225px;	
+}
+.light_12 {
+	top: 90px;
+	left: 245px;
+}
+/* container */
+#container {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 1;
+	overflow-x: hidden;
+}
+.night {
+	background-color: #142933; 
+}
+.dawn {
+	background-color: #2D5A70; 
+}
+.day {
+	background-color: #52A3CC;
+}
+.dusk {
+	background-color: #3D7A99; 
+}
+#content {
+	width: 100%;
+	position: relative;
+	padding: 28px 0 28px 325px;
+	background-color: black;
+	top: 100%;
+}
+article {
+	margin-top: 5px;
+	background-color: #33664D;
+	cursor: pointer;
+	overflow: hidden;
+}
+#content .single {
+	cursor: default;
+}
+article h1 {
+	color: #70995C;
+}
+article .excerpt *,
+article .content * {
+	margin: 0 15px 0 5px;
+}
+article .content img {
+	margin: 0 auto;
+}
+article p {
+	margin-top: 5px;
+}
+article .shadow
+{
+    display:block;
+    position:relative;
+}
+article .shadow img
+{
+    display:block;
+}
+article .shadow::before
+{
+    display:block;
+    content:'';
+    position:absolute;
+    width:100%;
+    height:100%;
+    -moz-box-shadow: 0 0 2px inset;
+    -webkit-box-shadow: 0 0 2px inset;
+    box-shadow: 0 0 2px inset;
+}
+article .excerpt-wrap {
+ padding: 5px 0;
+}
+article .excerpt-wrap img {
+	margin: 0 auto;
+	display: block;
+	box-shadow: 0 0 2px inset;
+}
+article .content-wrap {
+	padding: 5px 0;
+}
+
+/* side bar */
+#side-bar {
+	height: 100%;
+	width: 320px;
+	position: absolute;
+	z-index: 5;
+}
+#side-bar-wrap {
+
+}
+#branding {
+	cursor: pointer;
+}
+#main-navagation ul {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+}
+#main-navagation .current-menu-item a {
+	background-color: #70995C;
+}
+#main-navagation li a {
+	display: block;
+	font-size: 20px;
+	text-decoration: none;
+	color: black;
+	margin: 5px 0 0 5px;
+	background-color: #33664D;
+	padding: 10px 0 10px 24px;
+	box-shadow: 2px 0 4px;
+	width: 291px;
+	z-index: 99;
+	
+	transition-property: width, background-color;
+ 	transition-duration: .5s;
+ 	-moz-transition-property: width, background-color;
+ 	-moz-transition-duration: .5s;
+ 	-webkit-transition-property: width, background-color;
+ 	-webkit-transition-duration: .5s;
+}
+#main-navagation li:hover a {
+	width: 320px;
+	background-color: #70995C;
+	
+	transition-property: width, background-color;
+ 	transition-duration: .5s;
+ 	-moz-transition-property: width, background-color;
+ 	-moz-transition-duration: .5s;
+ 	-webkit-transition-property: width, background-color;
+ 	-webkit-transition-duration: .5s;
+}
