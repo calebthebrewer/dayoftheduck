@@ -121,7 +121,7 @@ function toggle_article(article, article_2) {
 }
 //document ready stuff
 var current_time;
-jQuery(document).ready(function($) {
+jQuery(function($) {
 	$("#branding").click(function() {
 		toggle_time();
 	});

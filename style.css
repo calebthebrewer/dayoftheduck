@@ -45,6 +45,7 @@ blockquote {
 	top: 20px;
 	float: left;
 	background-color: black;
+	background: url('img/stressed_linen.png') repeat;
 }
 .skyscraper {
 	height: 90px;
@@ -54,6 +55,7 @@ blockquote {
 	top: 10px;
 	float: left;
 	background-color: black;
+	background: url('img/stressed_linen.png') repeat;
 }
 .warehouse {
 	height: 35px;
@@ -63,6 +65,7 @@ blockquote {
 	top: 65px;
 	float: left;
 	background-color: black;
+	background: url('img/stressed_linen.png') repeat;
 }
 .building {
 	height: 40px;
@@ -72,10 +75,12 @@ blockquote {
 	top: 60px;
 	float: left;
 	background-color: black;
+	background: url('img/stressed_linen.png') repeat;
 }
 .light-off  {
-	background-color: black;
 	box-shadow: 0 0 0 0 black;
+	background-color: black;
+	background: url('img/stressed_linen.png') repeat;
 }
 .light-on  {
 	background-color: #CCC28F;
@@ -158,11 +163,11 @@ blockquote {
 	position: relative;
 	padding: 28px 0 28px 325px;
 	background-color: black;
-	top: 100%;
+	background: url('img/stressed_linen.png') repeat;
 }
 article {
 	margin-top: 5px;
-	background-color: #33664D;
+	background-color: #FFF7CC;
 	cursor: pointer;
 	overflow: hidden;
 }
@@ -241,7 +246,7 @@ article .content-wrap {
 	text-decoration: none;
 	color: black;
 	margin: 5px 0 0 5px;
-	background-color: #33664D;
+	background-color: #FFF7CC;
 	padding: 10px 0 10px 24px;
 	box-shadow: 2px 0 4px;
 	width: 291px;
