@@ -12,6 +12,6 @@
 get_header();
 get_template_part( 'side-bar' ); ?>
 <div id="main-content">
-	<?php echo get_template_part( 'part', 'index' ); ?>
+	<?php get_template_part( 'loop', 'list' ); ?>
 </div>
 <?php get_footer(); ?>

@@ -7,7 +7,7 @@
 				if( isset($options['branding']['id']) ) {
 					echo wp_get_attachment_image(
 						$options['branding']['id'], 
-						array( '320', 'auto' )
+						'full'
 					);
 				}
 			?>
@@ -18,7 +18,7 @@
 		</nav>
 	</div><!-- #side-bar-wrap -->
 </div><!-- #side-bar -->
-<div id="container" class="night">
+<div id="container" class="night gradient">
 	<div id="content" role="main">
 		<div id="skyline">
 			<div class="skylittle"></div>

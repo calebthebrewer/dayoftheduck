@@ -1,109 +1,39 @@
+function ajax_page_load( $link ) {
+	jQuery.post(
+		dotd_ajax.ajaxurl,
+		{
+			action : 'dotd-load-page',
+			url : $link.attr('href')
+		},
+		function( response ) {
+			//update nav menu
+			$("nav .current-menu-item").removeClass( 'current-menu-item' );
+			$link.parent().addClass( 'current-menu-item' );
+			//update head and history
+			$("title").html( $link.html() + ' | ' + dotd_ajax.site_name );
+			//update content
+			$("#main-content").html( response );
+			resize();
+		}
+	);
+}
 jQuery(document).ready(function($) {
 	//handle back/forward buttons button
 	window.onpopstate = function(event) {
-		var page_id = js_history.pop();
-		jQuery.post(
-			spiders_ajax.ajaxurl,
-			{
-				action : 'spiders-load-page',
-				page_id : page_id
-			},
-			function( response ) {
-				$("#main").html( response );
-				if( $("#container .metroUI").length > 0 ) {
-					$("#container .metroUI").horizontal_scroll();
-				} else {
-					window.scrollTo(0, 0);
-					apply_paralax();
-				}
-			}
-		);
+		event.preventDefault();
+		if( event.state ) {
+			ajax_page_load( $("nav a[href='" + event.state.href + "']") );
+		} else {
+			ajax_page_load( $("nav a[href='" + event.target.content.location.href + "']") );
+		}
 	};
-	$("#secondary .menu li a").click(function( e ) {
+	$(".menu-item a").click(function( e ) {
 		e.preventDefault();
-		//check if this is a parent item
-		if( $(this).parent().parent().hasClass('menu') ) {
-			console.log('good');
-			var focus = '#metro-'+$(this).parent().attr('id');
-			if( $("#container .metroUI").length > 0 ) {
-				$("#container .metroUI").horizontal_scroll({
-					'focus'	: focus
-				});
-			} else {
-				history.pushState({foo: $("#spiders-home-link").attr('href')}, "Home", $("#spiders-home-link").attr('href'));
-				js_history.push( 'home' );
-				jQuery.post(
-					spiders_ajax.ajaxurl,
-					{
-						action : 'spiders-load-page',
-						page_id : 'home'
-					},
-					function( response ) {
-						$("#main").html( response );
-						$("#container .metroUI").horizontal_scroll({
-							'focus'	: focus
-						});
-					}
-				);	
-			}	
-		} else {
-			history.pushState({foo: $(this).attr('href')}, $(this).attr('data-title'), $(this).attr('href'));
-			js_history.push( $(this).attr('data-id') );
-			jQuery.post(
-				spiders_ajax.ajaxurl,
-				{
-					action : 'spiders-load-page',
-					page_id : $(this).attr('data-id')
-				},
-				function( response ) {
-					window.scrollTo(0, 0);
-					$("#main").html( response );
-					apply_parallax();
-				}
-			);
-			
-		}
-	});
-	$("#spiders-home-link").click(function( e ){
-		e.preventDefault();
-		if( $('#container .metroUI').length == 0 ) {
-			var href = $(this).attr('href');
-			history.pushState({foo: $(this).attr('href')}, "Home", $(this).attr('href'));
-			js_history.push( 'home' );
-			jQuery.post(
-				spiders_ajax.ajaxurl,
-				{
-					action : 'spiders-load-page',
-					page_id : 'home'
-				},
-				function( response ) {
-					$("#main").html( response );
-					$("#container .metroUI").horizontal_scroll({
-						'focus' : 'left'
-					});
-				}
-			);
-		} else {
-			$("#container .metroUI").horizontal_scroll({
-				'focus' : 'left'
-			});
-		}
-	});
-	$(document).on('click', '#content .group a, .ajax-link', function( e ){
-		e.preventDefault();
-		history.pushState({foo: $(this).attr('href')}, $(this).attr('data-title'), $(this).attr('href'));
-		js_history.push( $(this).attr('data-id') );
-		jQuery.post(
-			spiders_ajax.ajaxurl,
-			{
-				action : 'spiders-load-page',
-				page_id : $(this).attr('data-id')
-			},
-			function( response ) {
-				window.scrollTo(0, 0);
-				$("#main").html( response );
-				apply_parallax();
-			}
+		history.pushState( 
+			{ href: $(this).attr('href') },
+			$(this).html(),
+			$(this).attr('href')
 		);
+		ajax_page_load( $(this) );
 	});
 });

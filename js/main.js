@@ -132,11 +132,11 @@ jQuery(function($) {
 	$.event.add( window, "resize", resize );
 	resize();
 	//bind tile click
-	$("#content .toggleable").click(function() {
-		if( $(this).siblings().find('.content').is(":visible") ) {
+	$(document).on('click', '#content .toggleable', function() {
+		if( $(this).siblings('.toggleable').find('.content').is(":visible") ) {
 			var article = $(this);
-			toggle_article( article.siblings().find('.content:visible').parent().parent().parent() );
-			setTimeout(function(){toggle_article(article)}, anim_d*2 );
+			toggle_article( article.siblings('.toggleable').find('.content:visible').parent().parent().parent() );
+			setTimeout( function() { toggle_article(article) }, anim_d * 2 );
 		} else {
 			toggle_article( this );
 		}
@@ -149,7 +149,7 @@ jQuery(function($) {
 			toggle_time( 1 );
 		} else if( time >=10 && time < 16 ) {	//day
 			toggle_time( 2 );
-		} else if( time >=16 && time < 22 ) {	//dusk
+		} else if( time >=16 && time < 21 ) {	//dusk
 			toggle_time( 3 );
 		} else {	//night
 			current_time = 0;

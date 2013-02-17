@@ -4,7 +4,7 @@ Theme URI: http://www.dayoftheduck.com
 Description: A theme for the Day of the Duck
 Author: Caleb Brewer
 Author URI: http://www.dayoftheduck.com
-Version: 1.0.0
+Version: 1.5.0
 Tags: html5, white, one-column, fixed-width, custom-logo, custom-colors, threaded-comments, sticky-post, translation-ready, microformats, rtl-language-support, editor-style
 License: GNU General Public License
 License URI: license.txt
@@ -13,12 +13,16 @@ License URI: license.txt
 Versions
 0.0.1		11/9/2012
 		Initial version of the template
+1.5.0		2/9/2013
+		Pages load with AJAX
+		Color Scheme has been updated
 
 .
 
 */
 body {
 	margin: 0;
+	font-family: Tahoma, Geneva, sans-serif;
 	
 }
 blockquote {
@@ -168,14 +172,22 @@ blockquote {
 article {
 	margin-top: 5px;
 	background-color: #FFF7CC;
-	cursor: pointer;
 	overflow: hidden;
+	max-width: 1000px;
 }
-#content .single {
+article.toggleable {
+	cursor: pointer;
+}
+article .excerpt {
+	color: #70995C;
+	cursor: pointer;
+}
+article .content {
+	color: #33664D;
 	cursor: default;
 }
-article h1 {
-	color: #70995C;
+article .read-more {
+	float: left;
 }
 article .excerpt *,
 article .content * {
@@ -187,22 +199,20 @@ article .content img {
 article p {
 	margin-top: 5px;
 }
-article .shadow
-{
-    display:block;
-    position:relative;
+article .shadow {
+    display: block;
+    position: relative;
 }
-article .shadow img
-{
-    display:block;
+article .shadow img {
+    display: block;
 }
 article .shadow::before
 {
-    display:block;
-    content:'';
-    position:absolute;
-    width:100%;
-    height:100%;
+    display: block;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
     -moz-box-shadow: 0 0 2px inset;
     -webkit-box-shadow: 0 0 2px inset;
     box-shadow: 0 0 2px inset;
@@ -242,31 +252,32 @@ article .content-wrap {
 }
 #main-navagation li a {
 	display: block;
-	font-size: 20px;
+	font-size: 18px;
 	text-decoration: none;
-	color: black;
+	color: #33664D;
 	margin: 5px 0 0 5px;
 	background-color: #FFF7CC;
-	padding: 10px 0 10px 24px;
-	box-shadow: 2px 0 4px;
-	width: 291px;
+	padding: 10px 36px 10px 24px;
+	box-shadow: 2px 0 4px black;
+	width: 256px;
 	z-index: 99;
 	
-	transition-property: width, background-color;
+	transition-property: width, padding, background-color;
  	transition-duration: .5s;
- 	-moz-transition-property: width, background-color;
+ 	-moz-transition-property: width, padding, background-color;
  	-moz-transition-duration: .5s;
- 	-webkit-transition-property: width, background-color;
+ 	-webkit-transition-property: width, padding, background-color;
  	-webkit-transition-duration: .5s;
 }
 #main-navagation li:hover a {
-	width: 320px;
+	width: 266px;
+	padding-right: 46px;
 	background-color: #70995C;
 	
-	transition-property: width, background-color;
+	transition-property: width, padding, background-color;
  	transition-duration: .5s;
- 	-moz-transition-property: width, background-color;
+ 	-moz-transition-property: width, padding, background-color;
  	-moz-transition-duration: .5s;
- 	-webkit-transition-property: width, background-color;
+ 	-webkit-transition-property: width, padding, background-color;
  	-webkit-transition-duration: .5s;
 }
