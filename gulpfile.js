@@ -5,7 +5,7 @@ var connect = require("gulp-connect");
 var source = "source/";
 var distribution = "distribution/";
 var jsVendor = [
-	"bower_components/fabric/d3/d3.min.js"
+	"bower_components/d3/d3.min.js"
 ];
 
 //default
