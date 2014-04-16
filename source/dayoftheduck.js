@@ -2,8 +2,6 @@
 
 	"use strict";
 
-	hljs.initHighlightingOnLoad();
-
 	var DayOfTheDuck = angular.module("DayOfTheDuck", ["ui.bootstrap", "ngRoute"])
 		.config(["$routeProvider", function($routeProvider) {
 			$routeProvider.when("/", {
