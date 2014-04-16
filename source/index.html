@@ -1,55 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="DayOfTheDuck">
 <head>
 	<title>Day of the Duck</title>
-	<link rel="stylesheet" href="vendor/vendor.css">amorph-1-start' type='text/x-placeholder'></script>index<script id='metamorph-1-end' type='text/x-placeholder'></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="vendor/vendor.css">
 	<link rel="stylesheet" href="dayoftheduck.css">
 </head>
 <body>
-<script type="text/x-handlebars">
-	<div id="site-wrap" class="container-fluid">
-		<header id="menu" role="navigation" class="col-md-3">
-			<div class="container-fluid">
-				<h3 class="menu-tile">Day of the Duck</h3>
-
-				<form role="form" class="col-md-12">
-					<div class="input-group">
-						<input type="text" class="form-control" value="{{searchRoute}}">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button">
-							<span class="glyphicon glyphicon-search"></span>
-						</button>
-					</span>
-					</div>
-				</form>
-				{{outlet}}
-
+<div id="site-wrap" class="container-flui">
+	<section ng-controller="Navigation" class="site-section col-md-3">
+		<header>
+			<h3><a href="#/" title="home">Day of the Duck</a></h3>
+			<div class="input-group">
+				<input type="text" class="form-control">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+				</span>
 			</div>
-
 		</header>
-	</div>
-
-</script>
-
-<svg id="world">
-	<rect class="sky" x="0" y="0" width="100%" height="60%" fill="url(#skyGradient)"></rect>
-	<svg class="city" x="60%" y="60%">
-	</svg>
-	<rect class="ground" x="0" y="60%" width="100%" height="40%"></rect>
-	<defs>
-		<linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-			<stop offset="0%" style="stop-color:blue;stop-opacity:1"/>
-			<stop offset="100%" style="stop-color:#000282;stop-opacity:1"/>
-		</linearGradient>
-		<pattern id="windows" patternUnits="userSpaceOnUse" width="5" height="5" viewBox="0 0 5 5">
-			<line x1="0" y1="0" x2="0" y2="2" stroke="#FFF500" stroke-width="7"/>
-			<line x1="0" y1="0" x2="0" y2="5" stroke="#19203d" stroke-width="7"/>
-			<line x1="0" y1="5" x2="5" y2="5" stroke="#19203d" stroke-width="4"/>
-			<line x1="0" y1="15" x2="15" y2="15" stroke="#19203d" stroke-width="11"/>
-		</pattern>
-
-		<pattern id="cityWalls" x="0" y="0" patternUnits="userSpaceOnUse" height="256" width="256">
-			<image xlink:href="images/stressed_linen.png"></image>
-		</pattern>
-	</defs>
-</svg>
+		<nav>
+			<ul class="list-group">
+				<a ng-repeat="r in repositories" href="#/projects/{{r.name}}" title="project {{r.name}}" class="list-group-item">
+					<span class="badge">{{r.language}}</span>
+					<h4 class="list-group-item-heading">{{r.name}}</h4>
+					<p class="list-group-item-text">{{r.description}}</p>
+				</a>
+			</ul>
+		</nav>
+	</section>
+	<section ng-view class="site-section col-md-6"></section>
+</div>
+<script src="vendor/vendor.js"></script>
+<script src="vendor/highlight.js"></script>
+<script src="dayoftheduck.js"></script>
+</body>
+</html>

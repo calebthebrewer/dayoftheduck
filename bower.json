@@ -2,8 +2,10 @@
   "name": "dayoftheduck",
   "private": true,
   "devDependencies": {
-    "d3": "~3.4.5",
     "bootstrap": "~3.1.1",
-    "ember": "~1.5.0"
+    "angular": "~1.2.16",
+    "angular-bootstrap": "~0.10.0",
+    "angular-route": "~1.2.16",
+    "marked": "~0.3.2"
   }
 }

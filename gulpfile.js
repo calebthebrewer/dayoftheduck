@@ -5,21 +5,17 @@ var connect = require("gulp-connect");
 
 var source = "source/";
 var distribution = "distribution/";
-var htmlSource = [
-	"source/index.html",
-	"source/templates/**/*.html",
-	"source/index-close.html"
-];
 var jsVendor = [
-	"bower_components/d3/d3.min.js",
-	"bower_components/jquery/dist/jquery.min.js",
-	"bower_components/handlebars/handlebars.min.js",
-	"bower_components/ember/ember.js"
+	"bower_components/angular/angular.min.js",
+	"bower_components/angular-route/angular-route.min.js",
+	"bower_components/marked/lib/marked.js",
+	"bower_components/angular-bootstrap/ui-bootstrap.min.js",
+	"bower_components/angular-bootstrap/ui-bootstrap.tpls.js"
 ];
 var cssVendor = [
 	"bower_components/bootstrap/dist/css/bootstrap.min.css"
 ];
-var fontsVendor= [
+var fontsVendor = [
 	"bower_components/bootstrap/dist/fonts/*"
 ];
 
@@ -31,6 +27,7 @@ gulp.task("watch", ["default", "connect"], function() {
 	gulp.watch(source + "**/*.scss", ["styles", "reload"]);
 	gulp.watch(source + "**/*.js", ["js", "reload"]);
 	gulp.watch(source + "**/*.html", ["html", "reload"]);
+	gulp.watch(source + "**/*.png", ["images", "reload"]);
 });
 
 //compile sass to dist dir
@@ -48,8 +45,7 @@ gulp.task("js", ["js-vendor"], function() {
 
 //move html to dist dir
 gulp.task("html", function() {
-	return gulp.src(htmlSource)
-		.pipe(concat("index.html"))
+	return gulp.src(source + "**/*.html")
 		.pipe(gulp.dest(distribution));
 });
 
