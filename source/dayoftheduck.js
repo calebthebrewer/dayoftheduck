@@ -1,16 +1,45 @@
-//(function() {
+App = Ember.Application.create();
+
+App.Router.map(function() {
+	this.resource("blog", {path: "/posts"}, function() {
+		this.resource("post", {path: "/posts/:post_id"});
+	});
+	this.resource("projects", function() {
+		this.resource("project", {path: "/projects/:project_id"});
+	});
+});
+
+App.ApplicationController = Ember.Controller.extend({
+	currentPathDidChange: function(route) {
+		this.set("searchRoute", route.currentPath);
+	}.observes("currentPath"),
+	searchRoute: ""
+});
+
+App.IndexRoute = Ember.Route.extend({
+	model: function() {
+		return {
+			links: [
+				"projects",
+				"blog"
+			]
+		};
+	}
+});
+
+(function() {
 	var appid = "W48Q3K-3YJ8W5TJ9E";
 
 	var buildings = [],
 		buildingCount = 22,
-		maxHeight = 15,
+		maxHeight = 30,
 		minHeight = 2,
 		maxWidth = 7,
 		minWidth = 4,
 		cursor = 0,
 		floorHeight = 2,
 		roofHeight = 3,
-		hallWidth = 3;
+		hallWidth = 3,
 		windowHeight = 2,
 		windowWidth = 1;
 
@@ -39,23 +68,23 @@
 				windows: new Array(width * height)
 			};
 
-		cursor += hallWidth * width + variableWidth(-2, 20, i * (Math.PI / buildingCount));
+		cursor += hallWidth * width + variableWidth(-2, 20, (i + 1) * (Math.PI / buildingCount));
 		buildings.push(building);
 	}
 
 	var city = d3.select(".city");
-	window.cityBuildings = city.selectAll("g")
+	city.selectAll("building")
 		.data(buildings)
 		.enter()
-		.append("g")
-		.attr("class", "building")
+		.append("rect")
+		.attr("class", "walls")
 		.attr({
 			x: function (d) { return d.x; },
-			y: function (d) { return d.y; },
+			y: 0,
 			width: function (d) { return d.width; },
 			height: function (d) { return d.height; },
 			//fill: "url('images/stressed_linen.png')"
-			fill: "gray"
+			fill: "url(#windows)"
 		})
 		.transition()
 		.delay(500)
@@ -65,16 +94,11 @@
 			return 0 - d3.select(this).attr("height");
 		});
 
-	cityBuildings[0].forEach(function(d, i) {
-		d3.select(d).selectAll("rect")
-			.data(buildings[i].windows)
-			.append("rect")
-			.attr("class", "window")
-			.attr({
-				width: windowWidth,
-				height: windowHeight
-			});
-	});
-
-//})();
+	d3.select("#windows")
+		.select("line")
+		.transition()
+		.delay(2000)
+		.duration(500)
+		.attr("stroke-width", 11);
+})();
 

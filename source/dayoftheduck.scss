@@ -1,10 +1,68 @@
 @import "styles/gradient";
 
+$fill-color: #19203d;
+
+html,
+body,
+.ember-view,
+#site-wrap {
+  height: 100%;
+}
+
+.container-fluid {
+  padding: 0;
+  height: 100%;
+}
+
+#menu {
+  padding: 0;
+  height: 100%;
+  background: url('images/stressed_linen.png') repeat;
+
+  form {
+    padding: 0;
+
+	input,
+	button {
+	  border-radius: 0;
+	  background-color: transparent;
+	  border-color: $fill-color;
+	}
+
+	input {
+	  border-left: none;
+	}
+	input:focus {
+		box-shadow: 0 0 6px $fill-color inset;
+	}
+	button {
+	  border-right: none;
+	}
+  }
+
+  ul {
+	list-style: none outside none;
+    padding: 0;
+
+	li {
+	  float: left;
+	}
+  }
+
+  .menu-tile {
+	padding: 6px 12px;
+	margin: 0;
+	border: thins solid $fill-color;
+	box-shadow: 0 0 2px $fill-color inset;
+  }
+}
+
+
 #world {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 0;
+  z-index: -1;
 
   width: 100%;
   height: 100%;
@@ -28,8 +86,7 @@
 	width: 40%;
 	height: 30%;
 
-	fill: white;
-	.building {
+	.walls {
 	  z-index: 10;
 
 	  .window {

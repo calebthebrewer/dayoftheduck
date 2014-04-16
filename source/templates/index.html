@@ -1,0 +1,7 @@
+<script type="text/x-handlebars" id="index">
+	<ul>
+		{{#each link in links}}
+		<li class="menu-tile col-md-6">{{#link-to link}}{{link}}{{/link-to}}</li>
+		{{/each}}
+	</ul>
+</script>
