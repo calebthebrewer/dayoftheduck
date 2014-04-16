@@ -12,7 +12,7 @@
 		<header>
 			<h3><a href="#/" title="home">Day of the Duck</a></h3>
 			<div class="input-group">
-				<input type="text" class="form-control">
+				<input type="text" class="form-control" ng-model="search">
 				<span class="input-group-btn">
 					<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
 				</span>
@@ -20,7 +20,7 @@
 		</header>
 		<nav>
 			<ul class="list-group">
-				<a ng-repeat="r in repositories" href="#/projects/{{r.name}}" title="project {{r.name}}" class="list-group-item">
+				<a ng-repeat="r in repositories | filter:search" href="#/projects/{{r.name}}" title="project {{r.name}}" class="list-group-item">
 					<span class="badge">{{r.language}}</span>
 					<h4 class="list-group-item-heading">{{r.name}}</h4>
 					<p class="list-group-item-text">{{r.description}}</p>
