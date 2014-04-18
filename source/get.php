@@ -1,11 +1,17 @@
 <?php
 $url = $_GET['url'];
+$ch = curl_init();
 
-$fp = fopen($url, "r");
+// set url
+curl_setopt($ch, CURLOPT_URL, $url);
 
-$result = "";
-while ($str = fread($fp,1024)) {
-    $result .= $str;
-}
-fclose($fp);
-echo $result;
+//return the transfer as a string
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+// $output contains the output string
+$output = curl_exec($ch);
+
+// close curl resource to free up system resources
+curl_close($ch);
+
+echo $output;
