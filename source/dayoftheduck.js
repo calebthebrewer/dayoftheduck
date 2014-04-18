@@ -43,7 +43,7 @@
 			});
 
 		//TODO: this is only going to work for six more blog posts (limit 10)
-		$http.get("http://blog.dayoftheduck.com/api/get_posts/")
+		$http.get("https://blog.dayoftheduck.com/api/get_posts/")
 			.success(function(data) {
 				$scope.posts = data.posts;
 			})
@@ -87,7 +87,7 @@
 
 		$http({
 			method: "GET",
-			url: "http://blog.dayoftheduck.com/" + $routeParams.post + "/?json=1",
+			url: "https://blog.dayoftheduck.com/api/get_post/?slug=" + $routeParams.post,
 			cache: true
 		}).success(function(data) {
 			$scope.post = data.post;
