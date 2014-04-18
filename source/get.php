@@ -1,17 +1,14 @@
 <?php
 $url = $_GET['url'];
+
 $ch = curl_init();
 
-// set url
+// set options
+curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);
 
-//return the transfer as a string
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-// $output contains the output string
-$output = curl_exec($ch);
+curl_exec($ch);
 
 // close curl resource to free up system resources
 curl_close($ch);
-
-echo $output;
