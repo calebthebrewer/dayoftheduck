@@ -43,7 +43,7 @@
 			});
 
 		//TODO: this is only going to work for six more blog posts (limit 10)
-		$http.get("https://blog.dayoftheduck.com/api/get_posts/")
+		$http.get("get.php?url=" + "https://blog.dayoftheduck.com/api/get_posts/")
 			.success(function(data) {
 				$scope.posts = data.posts;
 			})
@@ -64,7 +64,7 @@
 		$scope.url = "https://github.com/calebthebrewer/" + $routeParams.project;
 		$scope.readme = "";
 
-		var readmeUrl = "https://api.github.com/repos/calebthebrewer/" + $routeParams.project + "/readme",
+		var readmeUrl = "http://api.github.com/repos/calebthebrewer/" + $routeParams.project + "/readme",
 			readme = $templateCache.get(readmeUrl);
 
 		$http({
@@ -87,7 +87,7 @@
 
 		$http({
 			method: "GET",
-			url: "https://blog.dayoftheduck.com/api/get_post/?slug=" + $routeParams.post,
+			url: "get.php?url=" + "http://blog.dayoftheduck.com/api/get_post/?slug=" + $routeParams.post,
 			cache: true
 		}).success(function(data) {
 			$scope.post = data.post;
@@ -110,6 +110,9 @@
 		return {
 			link: function(scope, element, attrs) {
 				scope.$watch("post.content", function(content) {
+					element.html(content);
+				});
+				scope.$watch("p.excerpt", function(content) {
 					element.html(content);
 				});
 			}

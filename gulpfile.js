@@ -27,6 +27,7 @@ gulp.task("default", ["build", "connect"], function() {
 	gulp.watch(source + "**/*.scss", ["styles", "reload"]);
 	gulp.watch(source + "**/*.js", ["js", "reload"]);
 	gulp.watch(source + "**/*.html", ["html", "reload"]);
+	gulp.watch(source + "**/*.php", ["html", "reload"]);
 	gulp.watch(source + "**/*.png", ["images", "reload"]);
 });
 
@@ -50,7 +51,7 @@ gulp.task("js", ["js-vendor"], function() {
 
 //move html to dist dir
 gulp.task("html", function() {
-	return gulp.src(source + "**/*.html")
+	return gulp.src([source + "**/*.html", source + "**/*.php"])
 		.pipe(gulp.dest(distribution));
 });
 
