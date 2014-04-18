@@ -13,7 +13,11 @@
 			});
 		}]);
 
-	DayOfTheDuck.controller("Navigation", ["$scope", "$http", function($scope, $http) {
+	DayOfTheDuck.controller("Navigation", ["$scope", "$http", "$location", "$window", function($scope, $http, $location, $window) {
+
+		$scope.$on('$viewContentLoaded', function(event) {
+			$window.ga.push(['_trackPageview', $location.path()]);
+		});
 
 		$http.get("https://api.github.com/users/calebthebrewer/repos?type=public")
 			.success(function(data) {
