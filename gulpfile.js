@@ -20,14 +20,19 @@ var fontsVendor = [
 ];
 
 //default
-gulp.task("default", ["styles", "js", "html", "images", "fonts"]);
+gulp.task("build", ["styles", "js", "html", "images", "fonts"]);
 
 //watch
-gulp.task("watch", ["default", "connect"], function() {
+gulp.task("default", ["build", "connect"], function() {
 	gulp.watch(source + "**/*.scss", ["styles", "reload"]);
 	gulp.watch(source + "**/*.js", ["js", "reload"]);
 	gulp.watch(source + "**/*.html", ["html", "reload"]);
 	gulp.watch(source + "**/*.png", ["images", "reload"]);
+});
+
+gulp.task("dev", ["default"], function() {
+	gulp.src("bower_components/angular/angular.min.js.map")
+		.pipe(gulp.dest(distribution + "vendor/"));
 });
 
 //compile sass to dist dir

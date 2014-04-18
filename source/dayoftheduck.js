@@ -26,14 +26,17 @@
 			});
 	}]);
 
-	DayOfTheDuck.controller("Project", ["$scope", "$http", "$routeParams", function($scope, $http, $routeParams) {
+	DayOfTheDuck.controller("Project", ["$scope", "$http", "$routeParams", "$templateCache", function($scope, $http, $routeParams, $templateCache) {
 
 		$scope.url = "https://github.com/calebthebrewer/" + $routeParams.project;
 
-		$http.get("https://api.github.com/repos/calebthebrewer/" + $routeParams.project + "/readme")
+		var readmeUrl = $scope.url + "/readme";
+
+		$http.get(readmeUrl)
 			.success(function(data) {
 				if (data.encoding == "base64") {
 					$scope.readme = atob(data.content);
+					$templateCache.put(readmeUrl, $scope.readme);
 				}
 			});
 

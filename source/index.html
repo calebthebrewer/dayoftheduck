@@ -21,6 +21,7 @@
 		<nav>
 			<ul class="list-group">
 				<a ng-repeat="r in repositories | filter:search" href="#/projects/{{r.name}}" title="project {{r.name}}" class="list-group-item">
+					<span class="tags hidden">projects/{{r.name}}</span>
 					<span class="badge">{{r.language}}</span>
 					<h4 class="list-group-item-heading">{{r.name}}</h4>
 					<p class="list-group-item-text">{{r.description}}</p>

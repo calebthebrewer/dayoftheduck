@@ -6,6 +6,7 @@
     "angular": "~1.2.16",
     "angular-bootstrap": "~0.10.0",
     "angular-route": "~1.2.16",
-    "marked": "~0.3.2"
+    "marked": "~0.3.2",
+    "prismic.io": "~1.0.9"
   }
 }
