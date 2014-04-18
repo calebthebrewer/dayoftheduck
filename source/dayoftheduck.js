@@ -11,15 +11,28 @@
 				templateUrl: "templates/project.html",
 				controller: "Project"
 			});
+			$routeProvider.when("/blog/:post", {
+				templateUrl: "templates/post.html",
+				controller: "Post"
+			});
 		}]);
 
 	DayOfTheDuck.controller("Navigation", ["$scope", "$http", "$location", "$window", function($scope, $http, $location, $window) {
+
+		$scope.currentSubnav = "";
+		$scope.toggleSubnav = function(subnav) {
+			$scope.currentSubnav = $scope.currentSubnav == subnav ? "" : subnav;
+		};
 
 		$scope.$on('$viewContentLoaded', function(event) {
 			$window.ga.push(['_trackPageview', $location.path()]);
 		});
 
-		$http.get("https://api.github.com/users/calebthebrewer/repos?type=public")
+		$http({
+			method: "GET",
+			url: "https://api.github.com/users/calebthebrewer/repos?type=public",
+			cache: true
+		})
 			.success(function(data) {
 				var filteredRepositories = [];
 				angular.forEach(data, function(repository) {
@@ -28,6 +41,22 @@
 				});
 				$scope.repositories = filteredRepositories;
 			});
+
+		//TODO: this is only going to work for six more blog posts (limit 10)
+		$http.get("http://blog.dayoftheduck.com/api/get_posts/")
+			.success(function(data) {
+				$scope.posts = data.posts;
+			})
+			.error(function(data) {
+				$scope.posts = [
+					{
+						name: "Sample Post",
+						slug: "sample-post",
+						excerpt: "Some stuff about the post should go here."
+					}
+				];
+			});
+
 	}]);
 
 	DayOfTheDuck.controller("Project", ["$scope", "$http", "$routeParams", "$templateCache", function($scope, $http, $routeParams, $templateCache) {
@@ -52,12 +81,36 @@
 		});
 	}]);
 
+	DayOfTheDuck.controller("Post", ["$scope", "$http", "$routeParams", "$templateCache", function($scope, $http, $routeParams, $templateCache) {
+
+		$scope.post = "";
+
+		$http({
+			method: "GET",
+			url: "http://blog.dayoftheduck.com/" + $routeParams.post + "/?json=1",
+			cache: true
+		}).success(function(data) {
+			$scope.post = data.post;
+		});
+	}]);
+
 	DayOfTheDuck.directive("marked", function() {
 
 		return {
 			link: function(scope, element, attrs) {
 				scope.$watch("readme", function(readme) {
 					element.html(marked(readme));
+				});
+			}
+		};
+	});
+
+	DayOfTheDuck.directive("htmled", function() {
+
+		return {
+			link: function(scope, element, attrs) {
+				scope.$watch("post.content", function(content) {
+					element.html(content);
 				});
 			}
 		};
