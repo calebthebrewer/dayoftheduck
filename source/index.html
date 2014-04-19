@@ -8,51 +8,58 @@
 </head>
 <body>
 <div id="site-wrap" class="container-fluid">
-	<section ng-controller="Navigation" class="site-section col-md-3">
-		<header>
-			<h3><a href="#/" title="home">Day of the Duck</a></h3>
-<!-- TODO: we need a better search implementation, any ideas?
-			<div class="input-group">
-				<input type="text" class="form-control" ng-model="search">
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="button"><span
-							class="glyphicon glyphicon-search"></span></button>
-				</span>
-			</div>
-			-->
-		</header>
-		<nav>
-			<ul class="nav nav-pills nav-stacked">
-				<li ng-click="toggleSubnav('')"><a href="#/" title="Home">Home</a></li>
-				<li>
-					<a title="Projects" ng-click="toggleSubnav('projects')">Projects</a>
-					<ul class="list-group" ng-class="{hidden: currentSubnav != 'projects'}">
-						<a ng-repeat="r in repositories | filter:search"
-						   href="#/projects/{{r.name}}" title="project {{r.name}}"
-						   class="list-group-item">
-							<span class="tags hidden">projects/{{r.name}}</span>
-							<span class="badge">{{r.language}}</span>
-							<h4 class="list-group-item-heading">{{r.name}}</h4>
-							<p class="list-group-item-text">{{r.description}}</p>
-						</a>
-					</ul>
-				</li>
-				<li>
-					<a title="Blog" ng-click="toggleSubnav('blog')">Blog</a>
-					<ul class="list-group" ng-class="{hidden: currentSubnav != 'blog'}">
-						<a ng-repeat="p in posts | filter:search"
-						   href="#/blog/{{p.slug}}" title="{{p.title}}"
-						   class="list-group-item">
-							<span class="tags hidden">blog/{{p.slug}}</span>
-							<h4 class="list-group-item-heading">{{p.title}}</h4>
-							<p data-htmled class="list-group-item-text">{{p.excerpt}}</p>
-						</a>
-					</ul>
-				</li>
-			</ul>
-		</nav>
-	</section>
-	<section ng-view class="site-section col-md-6"></section>
+		<section ng-controller="Navigation" id="navigation" class="site-section col-sm-3">
+			<header>
+				<h3><a href="#/" title="home">Day of the Duck</a></h3>
+				<!-- TODO: we need a better search implementation, any ideas?
+							<div class="input-group">
+								<input type="text" class="form-control" ng-model="search">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button"><span
+											class="glyphicon glyphicon-search"></span></button>
+								</span>
+							</div>
+							-->
+			</header>
+			<nav>
+				<ul class="nav nav-pills nav-stacked">
+					<li ng-click="toggleSubnav('')"><a href="#/" title="Home">Home</a></li>
+					<li>
+						<a title="Projects" ng-click="toggleSubnav('projects')">Projects</a>
+						<ul class="list-group" ng-class="{hidden: currentSubnav != 'projects'}">
+							<a ng-repeat="r in repositories | filter:search"
+							   href="#/projects/{{r.name}}" title="project {{r.name}}"
+							   class="list-group-item">
+								<span class="tags hidden">projects/{{r.name}}</span>
+								<span class="badge">{{r.language}}</span>
+								<h4 class="list-group-item-heading">{{r.name}}</h4>
+
+								<p class="list-group-item-text">{{r.description}}</p>
+							</a>
+						</ul>
+					</li>
+					<li>
+						<a title="Blog" ng-click="toggleSubnav('blog')">Blog</a>
+						<ul class="list-group" ng-class="{hidden: currentSubnav != 'blog'}">
+							<a ng-repeat="p in posts | filter:search"
+							   href="#/blog/{{p.slug}}" title="{{p.title}}"
+							   class="list-group-item">
+								<span class="tags hidden">blog/{{p.slug}}</span>
+								<h4 class="list-group-item-heading">{{p.title}}</h4>
+
+								<p data-htmled class="list-group-item-text">{{p.excerpt}}</p>
+							</a>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</section>
+		<section class="site-section col-sm-6 col-sm-offset-3">
+			<div class="main-content" ng-view></div>
+		</section>
+</div>
+<div class="center-inner hidden-xs duck">
+	<img src="images/duck.png">
 </div>
 <script src="vendor/vendor.js"></script>
 <script src="dayoftheduck.js"></script>
