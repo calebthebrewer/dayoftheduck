@@ -19,6 +19,7 @@
 
 	DayOfTheDuck.controller("Navigation", ["$scope", "$http", "$location", "$window", function($scope, $http, $location, $window) {
 
+		$scope.miniNavOpen = false;
 		$scope.currentSubnav = "";
 		$scope.toggleSubnav = function(subnav) {
 			$scope.currentSubnav = $scope.currentSubnav == subnav ? "" : subnav;
@@ -56,6 +57,10 @@
 					}
 				];
 			});
+
+		$scope.$on('$routeChangeSuccess', function () {
+			$scope.miniNavOpen = false;
+		});
 
 	}]);
 

@@ -8,7 +8,13 @@
 </head>
 <body>
 <div id="site-wrap" class="container-fluid">
-		<section ng-controller="Navigation" id="navigation" class="site-section col-sm-3">
+		<section ng-controller="Navigation" id="navigation" class="site-section col-xs-3"
+				 ng-class="{show: miniNavOpen}">
+			<div class="nav-mini visible-xs">
+				<button class="toggle" ng-click="miniNavOpen = !miniNavOpen">
+					<span class="glyphicon glyphicon-th-large"></span>
+				</button>
+			</div>
 			<header>
 				<h3><a href="#/" title="home">Day of the Duck</a></h3>
 				<!-- TODO: we need a better search implementation, any ideas?
@@ -54,8 +60,10 @@
 				</ul>
 			</nav>
 		</section>
-		<section class="site-section col-sm-6 col-sm-offset-3">
-			<div class="main-content" ng-view></div>
+		<section class="site-section col-sm-9 col-sm-offset-3">
+			<div class="main-content">
+				<div ng-view class=" content-wrap col-sm-9"></div>
+			</div>
 		</section>
 </div>
 <div class="center-inner hidden-xs duck">

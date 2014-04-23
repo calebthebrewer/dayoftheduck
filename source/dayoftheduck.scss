@@ -13,33 +13,111 @@ body,
 }
 
 #navigation {
+  $width: 320px;
+
   position: fixed;
+  max-width: $width;
   top: 0;
   left: 0;
+
+  background-color: transparent;
+  font-size: 1.5em;
+
+  z-index: 2;
+
+  .nav-mini,
+  header,
+  nav {
+	z-index: 6;
+	font-size: .8em;
+  }
+
+
+  .nav-mini {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 5;
+	font-size: 2em;
+
+	button {
+	  border: none;
+	  background: none;
+
+	  color: lighten(#333, 20%);
+	}
+	button:hover {
+	  color: lighten(#333, 10%);
+	}
+
+
+  }
+
+  @media screen and (max-width: 768px) {
+	width: 100%;
+	max-width: none;
+	height: 56px;
+	background-color: #333;
+  }
+
+
   header {
 	width: 100%;
 	padding: 0 15px;
 	position: absolute;
 
-	background-color: $background;
-	z-index: 2;
+	@media screen and (max-width: 768px) {
+	  margin-left: 4em;
+	}
+
   }
   nav {
 	height: 100%;
 	padding-top: 56px;
 	overflow: auto;
+
+	@media screen and (max-width: 768px) {
+	  display: none;
+	}
   }
 }
 
+#navigation.show {
+  height: 100%;
+  nav {
+	display: block !important;
+  }
+
+}
+
 .main-content {
-  padding: 0 15px;
+  padding-top: 56px;
   background-color: $background;
+  height: 100%;
+  position: absolute;
+  overflow: auto;
+
+  @media screen and (max-width: 768px) {
+	background-color: darken($background, 30%);
+  }
 
   .github-fork {
 	position: fixed;
 	top: 0;
 	right: 0;
+
+	z-index: 6;
   }
+
+  .content-wrap {
+	padding: 0;
+	margin: 0 15px;
+  }
+}
+
+#content {
+  padding: none;
 }
 
 
