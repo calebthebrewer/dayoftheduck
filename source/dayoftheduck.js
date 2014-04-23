@@ -78,7 +78,7 @@
 			cache: true
 		}).success(function(data) {
 			if (data.encoding == "base64") {
-				var content = atob(data.content);
+				var content = atob(data.content.replace(/\n/g, ""));
 				$templateCache.put(readmeUrl, content);
 				$scope.readme = content;
 
